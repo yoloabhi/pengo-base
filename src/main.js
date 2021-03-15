@@ -1,23 +1,37 @@
-import Vue from "vue"
-import { BootstrapVue } from 'bootstrap-vue'
-import App from "./App.vue"
+/*!
 
+ =========================================================
+ * Vue Black Dashboard PRO - v1.2.3
+ =========================================================
 
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+ * Product Page: https://www.creative-tim.com/product/vue-black-dashboard-pro
+ * Copyright 2019 Creative Tim (https://www.creative-tim.com)
 
-// Make BootstrapVue available throughout your project
-Vue.use(BootstrapVue)
+ * Coded by Creative Tim
 
-import { initContract } from "./utils"
+ =========================================================
 
-Vue.config.productionTip = false
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import RouterPrefetch from 'vue-router-prefetch'
+import DashboardPlugin from './plugins/dashboard-plugin';
+import App from './App.vue';
 
-window.nearInitPromise = initContract()
-  .then(() => {
-    new Vue({
-      render: h => h(App),
-    }).$mount("#app")
-  })
-  
+// router setup
+import router from './routes/router';
+import i18n from './i18n';
+import './registerServiceWorker'
+// plugin setup
+Vue.use(DashboardPlugin);
+Vue.use(VueRouter);
+Vue.use(RouterPrefetch);
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  render: h => h(App),
+  router,
+  i18n
+});
