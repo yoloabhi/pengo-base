@@ -37,6 +37,10 @@ const ExtendedForms = () => import('src/pages/Forms/ExtendedForms.vue');
 const ValidationForms = () => import('src/pages/Forms/ValidationForms.vue');
 const Wizard = () => import('src/pages/Forms/Wizard.vue');
 
+// Pengomon pages
+const PengomonHome = () =>
+  import(/* webpackChunkName: "extra" */ 'src/pages/pengomon/Home.vue');
+
 // Maps pages
 const GoogleMaps = () =>
   import(/* webpackChunkName: "extra" */ 'src/pages/Maps/GoogleMaps.vue');
@@ -68,6 +72,20 @@ const ExtendedTables = () =>
   import(/* webpackChunkName: "tables" */ 'src/pages/Tables/ExtendedTables.vue');
 const PaginatedTables = () =>
   import(/* webpackChunkName: "tables" */ 'src/pages/Tables/PaginatedTables.vue');
+let pengomonMenu = {
+  path: '/pengomon',
+  component: DashboardLayout,
+  name: 'Pengomon',
+  redirect: '/pengomon/home',
+  children: [
+    {
+      path: 'home',
+      name: 'Home',
+      components: { default: PengomonHome }
+    },
+  ]
+};
+
 let componentsMenu = {
   path: '/components',
   component: DashboardLayout,
@@ -247,10 +265,12 @@ let authPages = {
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard',
+    redirect: '/pengomon',
     name: 'Home'
   },
+
   componentsMenu,
+  pengomonMenu,
   formsMenu,
   tablesMenu,
   mapsMenu,
