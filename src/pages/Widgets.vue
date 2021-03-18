@@ -217,7 +217,6 @@ import {
   BaseSwitch,
   TimeLine,
   TimeLineItem,
-  BaseCheckbox
 } from 'src/components';
 
 export default {
@@ -226,7 +225,7 @@ export default {
     TimeLine,
     TimeLineItem,
     TaskList,
-    BaseCheckbox
+
   },
   data() {
     return {

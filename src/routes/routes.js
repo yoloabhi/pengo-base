@@ -30,6 +30,7 @@ const Typography = () =>
 const Dashboard = () =>
   import(/* webpackChunkName: "dashboard" */ 'src/pages/Dashboard/Dashboard.vue');
 import Widgets from 'src/pages/Widgets.vue';
+import GamePage from "@/pages/pengomon/GamePage";
 
 // Forms pages
 const RegularForms = () => import('src/pages/Forms/RegularForms.vue');
@@ -82,6 +83,11 @@ let pengomonMenu = {
       path: 'home',
       name: 'Home',
       components: { default: PengomonHome }
+    },
+    {
+      path: 'game-page',
+      name: 'GamePage',
+      components: { default: GamePage }
     },
   ]
 };

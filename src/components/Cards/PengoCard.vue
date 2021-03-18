@@ -7,7 +7,7 @@
     >
       <h1 class="card-title">{{ this.name }}</h1>
       <img class="card-img" src="img/card-primary.png" alt="Image" />
-      <img :src="image" style="display: block; position: relative!important; width: 60%; margin: auto;" alt="Image" />
+      <img :src="image" style="display: block; position: relative!important; width: 80%; margin: auto;" alt="Image" />
       <template v-if="type === 'market'">
         <div class="card-prices" style="padding-top: 40px">
           <h3 class="text-on-front"><span>$</span>95</h3>
@@ -17,6 +17,27 @@
         <base-button slot="footer" round type="primary" class="btn-just-icon">
           Get started
         </base-button>
+      </template>
+      <template v-else>
+
+
+        <template v-if="sell">
+          <div class="col-md-4 ml-auto mr-auto">
+            <base-input
+              required
+              v-model="sellPrice"
+            >
+            </base-input>
+          </div>
+         
+          <base-button slot="footer" round type="primary" class="btn-just-icon" @click="sell=!sell">
+            Confirm
+          </base-button>
+        </template>
+        <base-button slot="footer" round type="primary" class="btn-just-icon" @click="sell=!sell" v-else>
+          List
+        </base-button>
+
       </template>
     </card>
   </div>
@@ -48,7 +69,15 @@ export default {
       description: 'Card type',
       default: '',
     },
+
   },
+  data() {
+    return {
+      sell: false,
+      sellPrice:null,
+    }
+  },
+
   // computed: {
   //   getCardOutlineColor () {
   //     if (this.grade === 'general') {
@@ -72,4 +101,6 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+
+</style>
