@@ -119,6 +119,7 @@
 import { CollapseTransition } from 'vue2-transitions';
 import { BaseNav, Modal } from '@/components';
 import SidebarToggleButton from './SidebarToggleButton';
+import { login,logout } from "@/utils";
 
 export default {
   components: {
@@ -128,6 +129,9 @@ export default {
     Modal
   },
   computed: {
+    isSignedIn() {
+      return window.walletConnection.isSignedIn();
+    },
     routeName() {
       const { name } = this.$route;
       return this.capitalizeFirstLetter(name);
@@ -145,6 +149,11 @@ export default {
     };
   },
   methods: {
+    login() {
+      console.log("calling utils.login")
+      login()
+    },
+    logout: logout,
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },

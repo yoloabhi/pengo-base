@@ -1,18 +1,3 @@
-/*!
-
- =========================================================
- * Vue Black Dashboard PRO - v1.2.3
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/vue-black-dashboard-pro
- * Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
- * Coded by Creative Tim
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RouterPrefetch from 'vue-router-prefetch'
@@ -28,10 +13,16 @@ Vue.use(DashboardPlugin);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 
+import { initContract } from "./utils"
+Vue.config.productionTip = false
+
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  render: h => h(App),
-  router,
-  i18n
-});
+window.nearInitPromise = initContract()
+  .then(() => {
+    new Vue({
+      el: '#app',
+      render: h => h(App),
+      router,
+      i18n
+    });
+  })
