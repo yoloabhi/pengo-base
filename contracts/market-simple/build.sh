@@ -2,4 +2,5 @@
 set -e
 
 RUSTFLAGS='-C link-arg=-s' cargo build --target wasm32-unknown-unknown --release
-cp target/wasm32-unknown-unknown/release/neardice.wasm ./res/
+mkdir -p ../../out
+cp target/wasm32-unknown-unknown/release/*.wasm ../../out/market.wasm
