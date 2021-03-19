@@ -18,17 +18,31 @@
       </slot>
       <slot>
         <input
+          v-if="iconUrl"
+          :value="value"
+          v-bind="$attrs"
+          v-on="listeners"
+          class="form-control"
+          style="padding-left: 30px;"
+          aria-describedby="addon-right addon-left"
+        />
+        <input
+          v-else
           :value="value"
           v-bind="$attrs"
           v-on="listeners"
           class="form-control"
           aria-describedby="addon-right addon-left"
         />
+        <span v-if="iconUrl" class="input-group-append">
+          <img :src="iconUrl" style="width:40%;padding-top:5%; "/>
+        </span>
       </slot>
       <slot name="addonRight">
         <span v-if="addonRightIcon" class="input-group-append">
           <div class="input-group-text"><i :class="addonRightIcon"></i></div>
         </span>
+
       </slot>
     </div>
 
@@ -64,6 +78,9 @@ export default {
     addonLeftIcon: {
       type: String,
       description: 'Input icon on the left'
+    },
+    iconUrl: {
+      type: String,
     }
   },
   model: {

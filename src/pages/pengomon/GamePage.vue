@@ -74,9 +74,27 @@
             </li>
           </ol>
         </div>
-        <base-button slot="footer" round type="primary" class="btn-just-icon" @click="rollDice">
+
+        <template v-if="playGame" >
+          <div style="margin-top: 20%;margin-left: 25%">
+            <base-button slot="footer" round type="primary" class="btn-just-icon" @click="play" style="margin-right:10%;">
+              UP
+            </base-button>
+            <base-button slot="footer" round type="primary" class="btn-just-icon" @click="play" style="margin-right:10%;">
+              7
+            </base-button>
+            <base-button slot="footer" round type="primary" class="btn-just-icon" @click="play" >
+              DOWN
+            </base-button>
+          </div>
+
+        </template>
+        <base-button slot="footer" round type="primary" class="btn-just-icon" @click="playGame=!playGame" style="left: 40%;top:20%;"  v-else>
           Play!
         </base-button>
+
+
+
       </div>
       <div class="col-md-4 ml-auto mr-auto">
         <card
@@ -85,21 +103,21 @@
           footer-classes="text-center mb-3 mt-3"
           id="rule-card"
         >
-          <h1 class="card-title">pro</h1>
-          <img class="card-img" src="img/card-primary.png" alt="Image" />
+          <h1 class="card-title" style="text-align:center; font-size:4em;" >Rules</h1>
+<!--          <img class="card-img" alt="Image" />-->
           <ul class="list-group">
-            <li class="list-group-item">300 messages</li>
-            <li class="list-group-item">150 emails</li>
-            <li class="list-group-item">24/7 Support</li>
+            <li class="list-group-item rules-list">- 300 messages fala dim khana</li>
+            <li class="list-group-item rules-list">- 150 emails meko pyaar hai</li>
+            <li class="list-group-item rules-list">- 24/7 Support kardo mere boobs ko</li>
           </ul>
-          <div class="card-prices">
-            <h3 class="text-on-front"><span>$</span>95</h3>
-            <h5 class="text-on-back">95</h5>
-            <p class="plan">Professional plan</p>
-          </div>
-          <base-button slot="footer" round type="primary" class="btn-just-icon">
-            Get started
-          </base-button>
+<!--          <div class="card-prices">-->
+<!--            <h3 class="text-on-front"><span>$</span>95</h3>-->
+<!--            <h5 class="text-on-back">95</h5>-->
+<!--            <p class="plan">Professional plan</p>-->
+<!--          </div>-->
+<!--          <base-button slot="footer" round type="primary" class="btn-just-icon">-->
+<!--            Get started-->
+<!--          </base-button>-->
         </card>
 
       </div>
@@ -115,13 +133,24 @@ export default {
   components: {
     // PengoCard,
   },
+  data() {
+    return {
+      playGame:false,
+      diceSound:Audio()
+    }
+  },
   methods: {
+
      rollDice() {
       const dice = [...document.querySelectorAll(".die-list")];
       dice.forEach(die => {
         this.toggleClasses(die);
         die.dataset.roll = this.getRandomNumber(1, 6);
       });
+    },
+    play(){
+       this.rollDice();
+       this.playGame=!this.playGame;
     },
     toggleClasses(die) {
       die.classList.toggle("odd-roll");
@@ -134,7 +163,8 @@ export default {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-}
+},
+
 };
 </script>
 <style scoped>
@@ -154,6 +184,14 @@ body {
   overflow: hidden;
   width: 100%;
 }
+.card-pricing.card-white ul li {
+  color: white;
+  text-align: justify;
+}
+.card-pricing ul {
+  max-width: 320px;
+
+}
 #rule-card{
   background: rgba( 0, 0, 0, 0.35 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -164,7 +202,7 @@ body {
 
 }
 .dice {
-  align-items: center;
+  /*align-items: center;*/
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
@@ -204,6 +242,7 @@ body {
   height: 100%;
   padding: 1rem;
   width: 100%;
+
 }
 .dot {
   align-self: center;
@@ -252,22 +291,22 @@ body {
   transform: rotateX(-360deg) rotateY(-900deg) rotateZ(-360deg);
 }
 [data-side="1"] {
-  transform: rotate3d(0, 0, 0, 90deg) translateZ(4rem);
+  transform: rotate3d(0, 0, 0, 90deg) translateZ(2.9rem);
 }
 [data-side="2"] {
-  transform: rotate3d(-1, 0, 0, 90deg) translateZ(4rem);
+  transform: rotate3d(-1, 0, 0, 90deg) translateZ(2.9rem);
 }
 [data-side="3"] {
-  transform: rotate3d(0, 1, 0, 90deg) translateZ(4rem);
+  transform: rotate3d(0, 1, 0, 90deg) translateZ(2.9rem);
 }
 [data-side="4"] {
-  transform: rotate3d(0, -1, 0, 90deg) translateZ(4rem);
+  transform: rotate3d(0, -1, 0, 90deg) translateZ(2.9rem);
 }
 [data-side="5"] {
-  transform: rotate3d(1, 0, 0, 90deg) translateZ(4rem);
+  transform: rotate3d(1, 0, 0, 90deg) translateZ(2.9rem);
 }
 [data-side="6"] {
-  transform: rotate3d(1, 0, 0, 180deg) translateZ(4rem);
+  transform: rotate3d(1, 0, 0, 180deg) translateZ(2.9rem);
 }
 [data-side="1"] .dot:nth-of-type(1) {
   grid-area: five;

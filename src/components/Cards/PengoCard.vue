@@ -26,10 +26,11 @@
             <base-input
               required
               v-model="sellPrice"
+              icon-url="img/icons/near_icon.png"
             >
             </base-input>
           </div>
-         
+
           <base-button slot="footer" round type="primary" class="btn-just-icon" @click="sell=!sell">
             Confirm
           </base-button>
