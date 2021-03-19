@@ -93,8 +93,8 @@
           </div>
 
         </template>
-        <base-button slot="footer" type="success" class="animation-on-hover" @click="playGame=!playGame" style="left: 40%;top:20%;"  v-else>
-          <img src="public/img/purple.png" style="width:40%;padding-top:5%; " />
+        <base-button slot="footer" type="success" class="animation-on-hover" @click="playGame=!playGame" style="left: 15%;top:20%;"  v-else>
+          <img src="img/icons/near_icon2.png" style="width:15%;" />
           Play!
         </base-button>
 
