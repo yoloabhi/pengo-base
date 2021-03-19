@@ -12,8 +12,8 @@
               <base-button type="primary">Primary</base-button>
               <base-button type="info">Info</base-button>&nbsp; <br />
               <base-button type="success" class="animation-on-hover"
-                >Success</base-button
-              >&nbsp; <base-button type="warning">Warning</base-button>&nbsp;
+                >Success</base-button>
+              &nbsp; <base-button type="warning">Warning</base-button>&nbsp;
               <base-button type="danger">Danger</base-button>&nbsp;
             </div>
           </div>

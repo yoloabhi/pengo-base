@@ -31,6 +31,7 @@ const Dashboard = () =>
   import(/* webpackChunkName: "dashboard" */ 'src/pages/Dashboard/Dashboard.vue');
 import Widgets from 'src/pages/Widgets.vue';
 import GamePage from "@/pages/pengomon/GamePage";
+import CoinFlip from "@/pages/pengomon/CoinFlip";
 
 // Forms pages
 const RegularForms = () => import('src/pages/Forms/RegularForms.vue');
@@ -88,6 +89,11 @@ let pengomonMenu = {
       path: 'game-page',
       name: 'GamePage',
       components: { default: GamePage }
+    },
+    {
+      path: 'coin-flip',
+      name: 'CoinFlip',
+      components: { default: CoinFlip }
     },
   ]
 };

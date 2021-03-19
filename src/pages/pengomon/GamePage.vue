@@ -1,6 +1,10 @@
 <template>
   <div class="content">
     <div class="row">
+
+
+    </div>
+    <div class="row">
       <div class="col-md-4 ml-auto mr-auto">
         <div class="dice">
           <ol class="die-list even-roll" data-roll="1" id="die-1">
@@ -89,7 +93,8 @@
           </div>
 
         </template>
-        <base-button slot="footer" round type="primary" class="btn-just-icon" @click="playGame=!playGame" style="left: 40%;top:20%;"  v-else>
+        <base-button slot="footer" type="success" class="animation-on-hover" @click="playGame=!playGame" style="left: 40%;top:20%;"  v-else>
+          <img src="public/img/purple.png" style="width:40%;padding-top:5%; " />
           Play!
         </base-button>
 
@@ -122,12 +127,11 @@
 
       </div>
     </div>
-    <div class="row">
 
-    </div>
   </div>
 </template>
 <script>
+var diceSound= new Audio('../../assets/sound/dicesound.mp3');
 // import PengoCard from "@/components/Cards/PengoCard";
 export default {
   components: {
@@ -136,9 +140,11 @@ export default {
   data() {
     return {
       playGame:false,
-      diceSound:Audio()
+      playSound:false,
+
     }
   },
+
   methods: {
 
      rollDice() {
@@ -151,6 +157,7 @@ export default {
     play(){
        this.rollDice();
        this.playGame=!this.playGame;
+       diceSound.play();
     },
     toggleClasses(die) {
       die.classList.toggle("odd-roll");

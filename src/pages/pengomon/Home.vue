@@ -5,7 +5,7 @@
         <pengo-card name="Ishan Randi" grade="general" image="img\UltraPengo.png"/>
       </div>
       <div class="col-lg-3 col-md-6">
-        <pengo-card name="Ishan Randi" grade="general" image="img\UltraPengo.png" type="market"/>
+        <pengo-card name="Most Important Pengo" grade="general" image="img\UltraPengo.png" type="market"/>
       </div>
     </div>
   </div>
