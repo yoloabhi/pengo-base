@@ -7,13 +7,19 @@
           <h1>Coin Flip!</h1>
           <div id="center">
             <div id="winner"></div>
-            <div id="image" :style="{ backgroundImage: 'url(' + backImage + ')' }"></div>
+            <img :src="backImage"/>
+<!--            <div id="image" :style="{ backgroundImage: 'url(' + backImage + ')!important;' }"></div>-->
           </div>
+          <template v-if="display" >
+            <div>User Choice: {{ this.userChoice.toUpperCase() }} <br/> Computer Choice: {{ this.computerChoice.toUpperCase() }}</div>
+            <div v-if="userChoice === computerChoice">You Win!</div>
+            <div v-else>You Lose!</div>
+          </template>
           <template v-if="playGame" >
             <div>
               <h2>Make a Selection</h2>
-              <button id="heads" @click="playToss(0)">Heads</button>
-              <button id="tails" @click="playToss(1)">Tails</button>
+              <button id="heads" @click="playToss(1)">Heads</button>
+              <button id="tails" @click="playToss(0)">Tails</button>
             </div>
           </template>
           <base-button slot="footer" type="success" class="animation-on-hover" @click="playDeposit" style="left: 0%;top:20%;"  v-else>
@@ -58,35 +64,43 @@ export default {
       buttons : document.querySelectorAll('button'),
       heads : 1,
       tails : 0,
-      userScore : 0,
-      computerScore : 0,
-      backImage: 'url(\'./heads.png\')',
+      userChoice : 0,
+      computerChoice : 0,
+      display: false,
+      backImage: 'img\\tails.png',
     }
   },
 
   methods: {
     playDeposit() {
-      this.playGame = true
-      // asd
+      this.display = false;
+      this.playGame = true;
+      // call contract logic
     },
     displayRandom(random){
-      const displayResult = document.querySelector('#image');
-      console.log(random);
-
       if (random === 1){
-        this.backImage = "url('./heads.png')";
-        // displayResult.style.backgroundImage =  "url('./heads.png')";
+        this.backImage = "img/heads.png";
 
       } else {
-        this.backImage = "url('./heads.png')";
-        // displayResult.style.backgroundImage =  "url('./tails.png')";
+        this.backImage = "img/tails.png";
       }
+      this.playGame = false;
     },
     playToss(choice){
-      //Computer randomly select heads or tails
-      const random = Math.round(Math.random());
+      //spin the coin
+      // const spin = document.querySelector('#image');
+      // spin.classList.add('animate');
+      let vm = this;
+      let animate = setInterval(() => {
+        if (vm.backImage === "img/tails.png") {
+          vm.backImage = "img/heads.png";
+        } else {
+          vm.backImage = "img/tails.png";
+        }
+        console.log(vm.backImage)
+      }, 150)
       //Computer selects a random 'heads' or 'tails
-      const computerPick = Math.round(Math.random());
+      const computerPick = Math.round(Math.random()) === 1? 1 : 0;
       //Record computers selection
       let computerSelection;
       if (computerPick === 1){
@@ -94,10 +108,6 @@ export default {
       } else {
         computerSelection = 'tails';
       }
-
-      //spin the coin
-      const spin = document.querySelector('#image');
-      spin.classList.add('animate');
 
       // //Record users selection
       let userSelection = null;
@@ -111,19 +121,19 @@ export default {
 
       // displays the player and computer's selection
       // in the Selected portion of DOM
-      console.log(computerSelection)
-      this.displaySelections(userSelection, computerSelection);
-      this.displayRandom(random);
+      console.log(computerPick)
+      // this.displaySelections(userSelection, computerSelection);
+      // this.displayRandom(computerPick);
 
       //Adds the score of the player and computer
       setTimeout(function(){
-        document.querySelector('#image').classList.remove('animate');
+        clearInterval(animate);
+        vm.displayRandom(computerPick);
+        vm.userChoice = userSelection;
+        vm.computerChoice = computerSelection;
+        vm.display = true;
       }, 2000);
     },
-
-
-
-
 },
 
 };
@@ -148,27 +158,27 @@ export default {
 
 }
 @keyframes spin {
-  0% {background: url("./heads.png")}
+  0% {background: url("../../../public/img/heads.png")}
 
-  25% {background: url("./tails.png")}
+  25% {background: url("../../../public/img/tails.png")}
 
-  50% {background: url("./heads.png")}
+  50% {background: url("../../../public/img/heads.png")}
 
-  75% {background: url("./tails.png")}
+  75% {background: url("../../../public/img/tails.png")}
 
-  100% {background: url("./heads.png")}
+  100% {background: url("../../../public/img/heads.png")}
 }
 
 
 #image{
-  background: url("./heads.png");
+  /*background-image: url("../../../public/img/heads.png");*/
   width: 227px;
   height: 337px;
 
 }
 
 .animate{
-  background: url("./heads.png");
+  /*background: url("../../../public/img/heads.png");*/
   width: 227px;
   height: 337px;
   animation-name: spin;
