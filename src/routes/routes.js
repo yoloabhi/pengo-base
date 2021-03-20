@@ -86,8 +86,8 @@ let pengomonMenu = {
       components: { default: PengomonHome }
     },
     {
-      path: 'game-page',
-      name: 'GamePage',
+      path: '7up-7down',
+      name: '7Up7Down',
       components: { default: GamePage }
     },
     {

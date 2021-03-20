@@ -21,49 +21,22 @@
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-      <div class="search-bar input-group" @click="searchModalVisible = true">
-        <!--
-          <input type="text" class="form-control" placeholder="Search...">
-          <div class="input-group-addon"><i class="tim-icons icon-zoom-split"></i></div>
-        -->
-
-        <!-- You can choose types of search input -->
-      </div>
-      <modal
-        :show.sync="searchModalVisible"
-        class="modal-search"
-        id="searchModal"
-        :centered="false"
-        :show-close="true"
-      >
-        <input
-          slot="header"
-          v-model="searchQuery"
-          type="text"
-          class="form-control"
-          id="inlineFormInputGroup"
-          placeholder="SEARCH"
-        />
-      </modal>
-
-        <template
-          slot="title"
-        >
-          <button type="button" class="btn btn-info btn-outline" acon="tim-icons icon-single-02">
+        <template v-if="!isSignedIn">
+          <button @click="login" type="button" class="btn btn-info btn-outline" acon="tim-icons icon-single-02">
             <i class="tim-icons icon-single-02"></i>
             Login
           </button>
-
-
         </template>
-      <base-dropdown
-        tag="li"
-        :menu-on-right="!$rtl.isRTL"
-        title-tag="a"
-        class="nav-item"
-        title-classes="nav-link"
-        menu-classes="dropdown-navbar"
-      >
+        <template v-else>
+          <base-input v-model="getAccountBalance" :disabled="true" style="color: #fff!important;" />
+          <base-dropdown
+            tag="li"
+            :menu-on-right="!$rtl.isRTL"
+            title-tag="a"
+            class="nav-item"
+            title-classes="nav-link"
+            menu-classes="dropdown-navbar"
+          >
         <template
           slot="title"
         >
@@ -71,11 +44,11 @@
           <b class="caret d-none d-lg-block d-xl-block"></b>
           <p class="d-lg-none">Log out</p>
         </template>
-        <div class="dropdown-divider"></div>
         <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Log out</a>
+          <a href="#" @click="logout" class="nav-item dropdown-item">Log out</a>
         </li>
       </base-dropdown>
+        </template>
     </ul>
   </base-nav>
 </template>
@@ -88,7 +61,6 @@ import { login,logout } from "@/utils";
 export default {
   components: {
     SidebarToggleButton,
-
     BaseNav,
     Modal
   },
@@ -98,7 +70,14 @@ export default {
     }
   },
   computed: {
+    getAccountBalance() {
+      if (this.accountBalance === null) {
+        return "Balance: Fetching"
+      }
+      return "Balance: " + this.accountBalance + " Near";
+    },
     isSignedIn() {
+      this.getBalance()
       return window.walletConnection.isSignedIn();
     },
     routeName() {
@@ -111,13 +90,19 @@ export default {
   },
   data() {
     return {
+      dat: 'rrr',
       activeNotifications: false,
       showMenu: false,
       searchModalVisible: false,
-      searchQuery: ''
+      searchQuery: '',
+      accountBalance: null,
     };
   },
   methods: {
+    async getBalance() {
+      const accountBalance = await window.walletConnection.account().getAccountBalance();
+      this.accountBalance = (accountBalance['available'] / 1000000000000000000000000).toFixed(3);
+    },
     login() {
       console.log("calling utils.login")
       login()
