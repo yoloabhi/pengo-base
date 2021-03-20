@@ -111,9 +111,9 @@
           <h1 class="card-title" style="text-align:center; font-size:4em;" >Rules</h1>
 <!--          <img class="card-img" alt="Image" />-->
           <ul class="list-group">
-            <li class="list-group-item rules-list">- 300 messages fala dim khana</li>
-            <li class="list-group-item rules-list">- 150 emails meko pyaar hai</li>
-            <li class="list-group-item rules-list">- 24/7 Support kardo mere boobs ko</li>
+            <li class="list-group-item rules-list">Press Play which would deduct the Near</li>
+            <li class="list-group-item rules-list">Then Choose 7 , up or Down</li>
+            <li class="list-group-item rules-list">Then depending on the result you get your prize</li>
           </ul>
 <!--          <div class="card-prices">-->
 <!--            <h3 class="text-on-front"><span>$</span>95</h3>-->
