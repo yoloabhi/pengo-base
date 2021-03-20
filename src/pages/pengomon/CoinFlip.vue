@@ -41,7 +41,7 @@
           <h1 class="card-title" style="text-align:center; font-size:4em;" >Rules</h1>
           <ul class="list-group">
             <li class="list-group-item rules-list">Press Play which would deduct the Near</li>
-            <li class="list-group-item rules-list">Then Choose 7 , up or Down</li>
+            <li class="list-group-item rules-list">Then Choose Head and Tails</li>
             <li class="list-group-item rules-list">Then depending on the result you get your prize</li>
           </ul>
         </card>
