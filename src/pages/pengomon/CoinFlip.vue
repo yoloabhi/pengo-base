@@ -22,7 +22,7 @@
               <button id="tails" @click="playToss(0)">Tails</button>
             </div>
           </template>
-          <base-button slot="footer" type="success" class="animation-on-hover" @click="playDeposit" style="left: 0%;top:20%;"  v-else>
+          <base-button slot="footer" type="success" class="animation-on-hover" @click="playDeposit" style="left: 0%;top:12%;"  v-else>
             <img src="img/icons/near_icon2.png" style="width:15%;" />
             Play!
           </base-button>
